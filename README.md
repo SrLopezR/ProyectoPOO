@@ -1,8 +1,8 @@
-\# Sistema de Gestión de Servicios para PoolNic
+# Sistema de Gestión de Servicios para PoolNic
 
 
 
-\## METODOLOGIA Y PROGRAMACION ORIENTADA A OBJETOS I - GRUPO 4
+## METODOLOGIA Y PROGRAMACION ORIENTADA A OBJETOS I - GRUPO 4
 
 
 
@@ -34,7 +34,7 @@ Docente:
 
 
 
-\*\*NORMAN JOSE CASH ARCIA\*\*
+**NORMAN JOSE CASH ARCIA**
 
 
 
@@ -42,7 +42,7 @@ Docente:
 
 
 
-\## \*\*Descripcion General del Proyecto\*\*
+## **Descripcion General del Proyecto**
 
 
 
@@ -86,7 +86,5 @@ trazabilidad en los servicios prestados.
 
 
 
-Para ver el diagrama de clases pincha \\\[\[aqui](https://imgur.com/a/vVLAo40)]
-
-
+Para ver el diagrama de clases pincha \[[aqui](https://imgur.com/a/vVLAo40)]
 
