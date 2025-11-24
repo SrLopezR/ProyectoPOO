@@ -1,2 +1,24 @@
-# ProyectoPOO
-El proyecto tiene como objetivo principal desarrollar un Sistema de Gestión de  Servicios para PoolNic, una empresa nicaragüense dedicada al mantenimiento y limpieza de  piscinas.
+UNIVERSIDAD AMERICANA
+
+
+
+
+
+SIS0208 - METODOLOGIA Y PROGRAMACION ORIENTADA A OBJETOS I - GRUPO 4
+
+Proyecto de curso 
+
+
+
+Integrantes EQUIPO : 
+
+Roberto Carlos López Ramírez
+
+Docente:
+
+NORMAN JOSE CASH ARCIA
+
+
+
+
+
