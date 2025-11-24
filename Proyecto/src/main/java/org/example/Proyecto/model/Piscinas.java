@@ -13,11 +13,12 @@ import java.time.LocalDate;
 @Setter
 @Table(name = "piscinas")
 public class Piscinas extends BaseEntity {
+    @Id
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "iddireccion")
-    @DescriptionsList(descriptionProperties = "alias, direccion, ciudad")
-    @ReadOnly
-    private Direcciones direccion;
+    @JoinColumn(name = "idcliente")
+    @DescriptionsList(descriptionProperties = "nombre, apellido")
+    @Required
+    private Cliente cliente;
 
     @Column(length = 100)
     private String nombrePersonalizado;

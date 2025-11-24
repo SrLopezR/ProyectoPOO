@@ -15,11 +15,11 @@ import java.time.LocalTime;
 @Setter
 @Table(name = "contratos")
 public class Contrato extends BaseEntity {
-
+    @Id
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "idcliente")
-    @DescriptionsList(descriptionProperties = "nombre, apellido, identificacionTributaria")
-    @ReadOnly
+    @DescriptionsList(descriptionProperties = "nombre, apellido")
+    @Required
     private Cliente cliente;
 
     @Column(length = 50, nullable = false, unique = true)

@@ -12,10 +12,11 @@ import javax.persistence.*;
 @Setter
 @Table(name = "direcciones")
 public class Direcciones extends BaseEntity {
+    @Id
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "idcliente")
     @DescriptionsList(descriptionProperties = "nombre, apellido")
-    @ReadOnly
+    @Required
     private Cliente cliente;
 
     @Column(length = 50, nullable = false)

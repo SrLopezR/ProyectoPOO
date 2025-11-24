@@ -18,7 +18,6 @@ import lombok.*;
 @Setter
 @Table(name = "cliente")
 public class Cliente extends BaseEntity {
-
     @Column(length=100, nullable=false)
     private String nombre;
 
@@ -43,7 +42,7 @@ public class Cliente extends BaseEntity {
     @DefaultValueCalculator(CurrentLocalDateCalculator.class)
     private LocalDate fechaNacimiento;
 
-    @Column(length=20, unique=true)
+    @Column(length=14, unique=true)
     private String identificacionTribitaria;
 
     private EstadoCliente estado;
