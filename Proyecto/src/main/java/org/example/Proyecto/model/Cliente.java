@@ -16,34 +16,47 @@ import lombok.*;
 @Entity
 @Getter
 @Setter
-@Table(name = "cliente")
+@Table(name = "clientes")
 public class Cliente extends BaseEntity {
-    @Column(length=100, nullable=false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "idcliente")
+    @DescriptionsList(descriptionProperties = "nombre, apellido")
+    @Required
+    private Cliente cliente;
+
+    @Column(length = 100, nullable = false)
+    @Required
     private String nombre;
 
-    @Column(length=100, nullable=false)
+    @Column(length = 100, nullable = false)
+    @Required
     private String apellido;
 
+    @Enumerated(EnumType.STRING)
+    @Required
     private TipoCliente tipoCliente;
 
-    @Column(length=15, nullable=false, unique=true)
+    @Column(length = 15, nullable = false, unique = true)
+    @Required
     private String telefonoPrincipal;
 
-    @Column(length=15, nullable = false, unique =true)
+    @Column(length = 15)
     private String telefonoSecundario;
 
-    @Column(length=100, nullable=false, unique=true)
+    @Column(length = 100, nullable = false, unique = true)
+    @Required
     private String correo;
 
     @DefaultValueCalculator(CurrentLocalDateCalculator.class)
-    @Hidden
+    @ReadOnly
     private LocalDate fechaRegistro;
 
-    @DefaultValueCalculator(CurrentLocalDateCalculator.class)
     private LocalDate fechaNacimiento;
 
-    @Column(length=14, unique=true)
-    private String identificacionTribitaria;
+    @Column(length = 20, unique = true)
+    private String identificacionTributaria;
 
+    @Enumerated(EnumType.STRING)
+    @Required
     private EstadoCliente estado;
 }

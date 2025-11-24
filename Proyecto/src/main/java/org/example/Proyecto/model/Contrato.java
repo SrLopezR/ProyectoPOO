@@ -15,7 +15,6 @@ import java.time.LocalTime;
 @Setter
 @Table(name = "contratos")
 public class Contrato extends BaseEntity {
-    @Id
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "idcliente")
     @DescriptionsList(descriptionProperties = "nombre, apellido")
@@ -23,14 +22,17 @@ public class Contrato extends BaseEntity {
     private Cliente cliente;
 
     @Column(length = 50, nullable = false, unique = true)
+    @Required
     private String numeroContrato;
 
     private TipoContratoServicio tipoContrato;
 
     @Column(nullable = false)
+    @Required
     private LocalDate fechaInicio;
 
     @Column(nullable = false)
+    @Required
     private LocalDate fechaFin;
 
     private LocalDate fechaFirma;

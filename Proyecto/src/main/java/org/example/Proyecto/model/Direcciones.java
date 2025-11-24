@@ -12,7 +12,6 @@ import javax.persistence.*;
 @Setter
 @Table(name = "direcciones")
 public class Direcciones extends BaseEntity {
-    @Id
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "idcliente")
     @DescriptionsList(descriptionProperties = "nombre, apellido")
@@ -20,16 +19,20 @@ public class Direcciones extends BaseEntity {
     private Cliente cliente;
 
     @Column(length = 50, nullable = false)
+    @Required
     private String alias;
 
     @Column(nullable = false)
     @Stereotype("MEMORY")
+    @Required
     private String direccion;
 
     @Column(length = 100, nullable = false)
+    @Required
     private String ciudad;
 
     @Column(length = 100, nullable = false)
+    @Required
     private String departamento;
 
     @Column(name = "codigoPostal", length = 10)
