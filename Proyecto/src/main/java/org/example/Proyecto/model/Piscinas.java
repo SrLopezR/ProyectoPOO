@@ -13,7 +13,6 @@ import java.time.LocalDate;
 @Setter
 @Table(name = "piscinas")
 public class Piscinas extends BaseEntity {
-    @Id
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "idcliente")
     @DescriptionsList(descriptionProperties = "nombre, apellido")
@@ -23,10 +22,16 @@ public class Piscinas extends BaseEntity {
     @Column(length = 100)
     private String nombrePersonalizado;
 
+    @Enumerated(EnumType.STRING)
+    @Required
     private TipoPiscinas tipoPiscina;
 
+    @Enumerated(EnumType.STRING)
+    @Required
     private MaterialConstruccion materialConstruccion;
 
+    @Enumerated(EnumType.STRING)
+    @Required
     private FormaPiscina forma;
 
     @Column(precision = 6, scale = 2)
@@ -43,11 +48,14 @@ public class Piscinas extends BaseEntity {
 
     private Integer capacidadGalones;
 
+    @Enumerated(EnumType.STRING)
     private TipoFiltro tipoFiltro;
 
     private LocalDate fechaInstalacion;
 
     private LocalDate ultimoMantenimiento;
 
+    @Enumerated(EnumType.STRING)
+    @Required
     private EstadoPiscina estado;
 }
