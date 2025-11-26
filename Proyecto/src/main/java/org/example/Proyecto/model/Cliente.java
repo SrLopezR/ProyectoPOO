@@ -1,49 +1,75 @@
 package org.example.Proyecto.model;
 
-import java.math.*;
-import java.time.*;
-import java.util.Date;
-
-import javax.persistence.*;
-
-import org.hibernate.annotations.GenericGenerator;
+import lombok.Getter;
+import lombok.Setter;
 import org.openxava.annotations.*;
 import org.openxava.calculators.CurrentLocalDateCalculator;
-import org.openxava.model.*;
 
-import lombok.*;
+import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Getter
 @Setter
-@Table(name = "cliente")
+@Table(name = "clientes")
+@Views({
+        @View(name = "simple", members = "nombre, apellido, telefonoPrincipal, correo"),
+        @View(name = "completo", members = "nombre, apellido, tipoCliente, telefonoPrincipal, telefonoSecundario, correo, fechaRegistro, fechaNacimiento, identificacionTributaria, estado")
+})
 public class Cliente extends BaseEntity {
-    @Column(length=100, nullable=false)
+
+    @Column(length = 100, nullable = false)
+    @Required
     private String nombre;
 
-    @Column(length=100, nullable=false)
+    @Column(length = 100, nullable = false)
+    @Required
     private String apellido;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipo_cliente", nullable = false)
+    @Required
     private TipoCliente tipoCliente;
 
-    @Column(length=15, nullable=false, unique=true)
+    @Column(name = "telefono_principal", length = 15, nullable = false, unique = true)
+    @Required
     private String telefonoPrincipal;
 
-    @Column(length=15, nullable = false, unique =true)
+    @Column(name = "telefono_secundario", length = 15)
     private String telefonoSecundario;
 
-    @Column(length=100, nullable=false, unique=true)
+    @Column(length = 100, nullable = false, unique = true)
+    @Required
     private String correo;
 
     @DefaultValueCalculator(CurrentLocalDateCalculator.class)
-    @Hidden
+    @ReadOnly
+    @Column(name = "fecha_registro")
     private LocalDate fechaRegistro;
 
-    @DefaultValueCalculator(CurrentLocalDateCalculator.class)
+    @Column(name = "fecha_nacimiento")
     private LocalDate fechaNacimiento;
 
-    @Column(length=14, unique=true)
-    private String identificacionTribitaria;
+    @Column(name = "identificacion_tributaria", length = 20, unique = true)
+    private String identificacionTributaria;
 
+    @Enumerated(EnumType.STRING)
+    @Required
     private EstadoCliente estado;
+
+
+    @OneToMany(mappedBy = "cliente")
+    @ReadOnly
+    @ListProperties("alias, direccion, ciudad, esPrincipal")
+    private java.util.List<Direcciones> direcciones;
+
+    @OneToMany(mappedBy = "cliente")
+    @ReadOnly
+    @ListProperties("numeroContrato, tipoContrato, estado, fechaInicio, fechaFin")
+    private java.util.List<Contrato> contratos;
+
+    //@OneToMany(mappedBy = "cliente")
+    //@ReadOnly
+    //@ListProperties("nombrePersonalizado, tipoPiscina, estado")
+    //private java.util.List<Piscinas> piscinas;
 }

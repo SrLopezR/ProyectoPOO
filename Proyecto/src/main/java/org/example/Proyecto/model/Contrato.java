@@ -2,7 +2,6 @@ package org.example.Proyecto.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
 import org.openxava.annotations.*;
 
 import javax.persistence.*;
@@ -15,43 +14,59 @@ import java.time.LocalTime;
 @Setter
 @Table(name = "contratos")
 public class Contrato extends BaseEntity {
-    @Id
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "idcliente")
+    @JoinColumn(name = "id_cliente")
     @DescriptionsList(descriptionProperties = "nombre, apellido")
     @Required
     private Cliente cliente;
 
-    @Column(length = 50, nullable = false, unique = true)
+    @Column(name = "numero_contrato", length = 50, nullable = false, unique = true)
+    @Required
     private String numeroContrato;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipo_contrato", nullable = false)
+    @Required
     private TipoContratoServicio tipoContrato;
 
-    @Column(nullable = false)
+    @Column(name = "fecha_inicio", nullable = false)
+    @Required
     private LocalDate fechaInicio;
 
-    @Column(nullable = false)
+    @Column(name = "fecha_fin", nullable = false)
+    @Required
     private LocalDate fechaFin;
 
+    @Column(name = "fecha_firma")
     private LocalDate fechaFirma;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "frecuencia_servicio")
     private FrecuenciaContrato frecuenciaServicio;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "dia_servicio")
     private DiaServicio diaServicio;
 
+    @Column(name = "horario_preferido")
     private LocalTime horarioPreferido;
 
+    @Column(name = "terminos_especiales")
     @Stereotype("MEMORY")
     private String terminosEspeciales;
 
+    @Column(name = "limite_emergencias")
     private Integer limiteEmergencias = 0;
 
     @Column(precision = 5, scale = 2)
-    @Stereotype("PORCENTAJE")
     private BigDecimal descuento = BigDecimal.ZERO;
 
+    @Enumerated(EnumType.STRING)
+    @Required
     private EstadoContrato estado;
 
+    @Column(name = "motivo_cancelacion")
     @Stereotype("MEMORY")
     private String motivoCancelacion;
 }

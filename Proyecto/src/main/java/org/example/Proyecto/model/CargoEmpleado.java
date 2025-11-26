@@ -1,9 +1,8 @@
 package org.example.Proyecto.model;
 
 public enum CargoEmpleado {
-    DIARIA,
-    SEMANAL,
-    QUINCENAL,
-    MENSUAL,
-    ANUAL
+    TECNICO,
+    SUPERVISOR,
+    ADMINISTRADOR,
+    GERENTE
 }

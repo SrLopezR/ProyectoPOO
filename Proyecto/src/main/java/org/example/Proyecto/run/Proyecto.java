@@ -8,7 +8,8 @@ import org.openxava.util.*;
  * With OpenXava Studio/Eclipse: Right mouse button > Run As > Java Application
  */
 
-public class Proyecto {
+public class
+Proyecto {
 
     public static void main(String[] args) throws Exception {
         //DBServer.start("Proyectop"); // To use your own database comment this line and configure src/main/webapp/META-INF/context.xml
