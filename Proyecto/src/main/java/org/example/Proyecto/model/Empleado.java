@@ -66,4 +66,9 @@ public class Empleado extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Required
     private EstadoEmpleado estado;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_usuario", unique = true)
+    @DescriptionsList(descriptionProperties = "username")
+    private Usuario usuario;
 }

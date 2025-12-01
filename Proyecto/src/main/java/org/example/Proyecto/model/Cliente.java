@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Table(name = "clientes")
 @Views({
         @View(name = "simple", members = "nombre, apellido, telefonoPrincipal, correo"),
-        @View(name = "completo", members = "nombre, apellido, tipoCliente, telefonoPrincipal, telefonoSecundario, correo, fechaRegistro, fechaNacimiento, identificacionTributaria, estado")
+        @View(name = "completo", members = "nombre, apellido, tipoCliente, telefonoPrincipal, telefonoSecundario, correo, fechaRegistro, fechaNacimiento, identificacionTributaria, estado, usuario")
 })
 public class Cliente extends BaseEntity {
 
@@ -57,11 +57,16 @@ public class Cliente extends BaseEntity {
     @Required
     private EstadoCliente estado;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_usuario", unique = true)
+    @DescriptionsList(descriptionProperties = "username")
+    @Required
+    private Usuario usuario;
 
     @OneToMany(mappedBy = "cliente")
     @ReadOnly
     @ListProperties("alias, direccion, ciudad, esPrincipal")
-    private java.util.List<Direcciones> direcciones;
+    private java.util.List<Ubicacion> Ubicaciones;
 
     @OneToMany(mappedBy = "cliente")
     @ReadOnly
