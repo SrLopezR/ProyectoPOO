@@ -1,4 +1,3 @@
-// DetalleFactura.java
 package org.example.Proyecto.model;
 
 import lombok.Getter;

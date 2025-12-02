@@ -66,7 +66,7 @@ public class Cliente extends BaseEntity {
     @OneToMany(mappedBy = "cliente")
     @ReadOnly
     @ListProperties("alias, direccion, ciudad, esPrincipal")
-    private java.util.List<Ubicacion> Ubicaciones;
+    private java.util.List<Ubicacion> ubicaciones;
 
     @OneToMany(mappedBy = "cliente")
     @ReadOnly

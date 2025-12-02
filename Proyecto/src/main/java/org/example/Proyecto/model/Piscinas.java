@@ -15,11 +15,10 @@ public class Piscinas extends BaseEntity {
 
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_direccion")
-    @DescriptionsList(descriptionProperties = "alias, direccion, ciudad")
+    @JoinColumn(name = "id_ubicacion")
+    @DescriptionsList(descriptionProperties = "alias, ubicacion, ciudad")
     @Required
-    @NoSearch
-    private Direcciones direccion;
+    private Ubicacion ubicacion;
 
     @Column(name = "nombre_personalizado", length = 100)
     private String nombrePersonalizado;

@@ -1,4 +1,3 @@
-// MetodoPago.java
 package org.example.Proyecto.model;
 
 public enum MetodoPago {

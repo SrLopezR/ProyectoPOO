@@ -1,4 +1,3 @@
-// Periodicidad.java
 package org.example.Proyecto.model;
 
 public enum Periodicidad {
