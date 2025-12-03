@@ -65,6 +65,7 @@ public class Empleado extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     @Required
+    @Hidden
     private EstadoEmpleado estado;
 
     @OneToOne(fetch = FetchType.LAZY)

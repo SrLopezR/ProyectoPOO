@@ -55,6 +55,7 @@ public class Cliente extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     @Required
+    @Hidden
     private EstadoCliente estado;
 
     @OneToOne(fetch = FetchType.LAZY)
