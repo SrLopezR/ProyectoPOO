@@ -2,6 +2,10 @@ package org.example.Proyecto.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.example.Proyecto.model.enums.DiaServicio;
+import org.example.Proyecto.model.enums.EstadoContrato;
+import org.example.Proyecto.model.enums.FrecuenciaContrato;
+import org.example.Proyecto.model.enums.TipoContratoServicio;
 import org.openxava.annotations.*;
 
 import javax.persistence.*;

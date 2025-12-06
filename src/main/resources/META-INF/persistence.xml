@@ -20,11 +20,16 @@
         <class>com.openxava.naviox.model.SSORecord</class>
         <class>com.openxava.naviox.model.User</class>
         <class>com.openxava.naviox.model.LDAPConfiguration</class>
-        <class>org.example.Proyecto.model.Cliente</class>
         <class>org.example.Proyecto.model.Direcciones</class>
-        <class>org.example.Proyecto.model.Contrato</class>
-        <class>org.example.Proyecto.model.Empleado</class>
-        <class>org.example.Proyecto.model.Piscinas</class>
+        <class>org.example.Proyecto.model.Producto</class>
+        <class>org.example.Proyecto.model.Inventario</class>
+        <class>org.example.Proyecto.model.Factura</class>
+        <class>org.example.Proyecto.model.DetalleFactura</class>
+        <class>org.example.Proyecto.model.Pago</class>
+        <class>org.example.Proyecto.model.ProgramacionServicios</class>
+        <class>org.example.Proyecto.model.UsoProductos</class>
+        <class>org.example.Proyecto.model.Ubicacion</class>
+        <class>org.example.Proyecto.model.Usuario</class>
         <class>org.example.Proyecto.model.Servicio</class>
         <properties>
             <property name="javax.persistence.schema-generation.database.action" value="update"/>

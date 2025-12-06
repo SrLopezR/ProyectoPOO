@@ -2,6 +2,8 @@ package org.example.Proyecto.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.example.Proyecto.model.enums.EstadoProgramacionServicio;
+import org.example.Proyecto.model.enums.Periodicidad;
 import org.openxava.annotations.*;
 import javax.persistence.*;
 import java.time.LocalDate;

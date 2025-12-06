@@ -2,6 +2,9 @@ package org.example.Proyecto.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.example.Proyecto.model.enums.CategoriaServicio;
+import org.example.Proyecto.model.enums.EstadoServicio;
+import org.example.Proyecto.model.enums.FrecuenciaServicio;
 import org.openxava.annotations.*;
 
 import javax.persistence.*;
@@ -60,5 +63,6 @@ public class Servicio extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     @Required
+    @Hidden
     private EstadoServicio estado;
 }

@@ -2,6 +2,7 @@ package org.example.Proyecto.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.example.Proyecto.model.enums.EstadoUsuario;
 import org.openxava.annotations.*;
 import javax.persistence.*;
 import javax.validation.constraints.AssertTrue;

@@ -2,6 +2,8 @@ package org.example.Proyecto.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.example.Proyecto.model.enums.EstadoPago;
+import org.example.Proyecto.model.enums.MetodoPago;
 import org.openxava.annotations.*;
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -39,6 +41,7 @@ public class Pago extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     @Required
+    @Hidden
     private EstadoPago estado;
 
     @Stereotype("MEMORY")

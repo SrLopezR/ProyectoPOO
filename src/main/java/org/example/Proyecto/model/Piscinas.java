@@ -2,9 +2,11 @@ package org.example.Proyecto.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.example.Proyecto.model.enums.*;
 import org.openxava.annotations.*;
 
 import javax.persistence.*;
+import javax.ws.rs.DefaultValue;
 import java.time.LocalDate;
 
 @Entity
@@ -16,7 +18,7 @@ public class Piscinas extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_ubicacion")
-    @DescriptionsList(descriptionProperties = "alias, ubicacion, ciudad")
+    @DescriptionsList(descriptionProperties = "alias, direccion, ciudad")
     @Required
     private Ubicacion ubicacion;
 
@@ -63,6 +65,7 @@ public class Piscinas extends BaseEntity {
     private LocalDate ultimoMantenimiento;
 
     @Enumerated(EnumType.STRING)
-    @Required
-    private EstadoPiscina estado;
+    @DefaultValue("ACTIVO")
+    @Hidden
+    private EstadoPiscina estado = EstadoPiscina.ACTIVA;
 }

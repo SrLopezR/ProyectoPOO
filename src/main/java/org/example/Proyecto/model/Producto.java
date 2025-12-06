@@ -2,6 +2,8 @@ package org.example.Proyecto.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.example.Proyecto.model.enums.CategoriaProducto;
+import org.example.Proyecto.model.enums.EstadoProducto;
 import org.openxava.annotations.*;
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -41,5 +43,6 @@ public class Producto extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     @Required
+    @Hidden
     private EstadoProducto estado;
 }

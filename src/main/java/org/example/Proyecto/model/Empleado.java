@@ -2,9 +2,11 @@ package org.example.Proyecto.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.example.Proyecto.model.enums.*;
 import org.openxava.annotations.*;
 
 import javax.persistence.*;
+import javax.ws.rs.DefaultValue;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -64,9 +66,9 @@ public class Empleado extends BaseEntity {
     private TipoContrato tipoContrato;
 
     @Enumerated(EnumType.STRING)
-    @Required
     @Hidden
-    private EstadoEmpleado estado;
+    @DefaultValue("ACTIVO")
+    private EstadoEmpleado estado = EstadoEmpleado.ACTIVO;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_usuario", unique = true)

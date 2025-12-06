@@ -2,10 +2,13 @@ package org.example.Proyecto.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.example.Proyecto.model.enums.EstadoCliente;
+import org.example.Proyecto.model.enums.TipoCliente;
 import org.openxava.annotations.*;
 import org.openxava.calculators.CurrentLocalDateCalculator;
 
 import javax.persistence.*;
+import javax.ws.rs.DefaultValue;
 import java.time.LocalDate;
 
 @Entity
@@ -54,9 +57,8 @@ public class Cliente extends BaseEntity {
     private String identificacionTributaria;
 
     @Enumerated(EnumType.STRING)
-    @Required
-    @Hidden
-    private EstadoCliente estado;
+    @DefaultValue ("ACTIVO")
+    private EstadoCliente estado = EstadoCliente.ACTIVO;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_usuario", unique = true)
