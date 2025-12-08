@@ -8,6 +8,7 @@ import org.example.Proyecto.model.enums.FrecuenciaServicio;
 import org.openxava.annotations.*;
 
 import javax.persistence.*;
+import javax.ws.rs.DefaultValue;
 import java.math.BigDecimal;
 
 @Entity
@@ -62,7 +63,7 @@ public class Servicio extends BaseEntity {
     private String productosSugeridos;
 
     @Enumerated(EnumType.STRING)
-    @Required
     @Hidden
-    private EstadoServicio estado;
+    @DefaultValue("ACTIVO")
+    private EstadoServicio estado = EstadoServicio.ACTIVO;
 }

@@ -48,19 +48,19 @@
     </module>
 
 
-    <!-- Módulo para Clientes (si existe) -->
+    <!-- Módulo para Clientes  -->
     <module name="Cliente">
         <model name="Cliente"/>
         <controller name="Typical"/>
     </module>
 
-    <!-- Módulo para Empleados (si existe) -->
+    <!-- Módulo para Empleados  -->
     <module name="Empleado">
         <model name="Empleado"/>
         <controller name="Typical"/>
     </module>
 
-    <!-- Módulo para Ubicaciones (si existe) -->
+    <!-- Módulo para Ubicaciones  -->
     <module name="Ubicacion">
         <model name="Ubicacion"/>
         <controller name="Typical"/>

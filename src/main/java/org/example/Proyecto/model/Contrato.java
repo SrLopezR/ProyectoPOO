@@ -9,6 +9,7 @@ import org.example.Proyecto.model.enums.TipoContratoServicio;
 import org.openxava.annotations.*;
 
 import javax.persistence.*;
+import javax.ws.rs.DefaultValue;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -67,8 +68,8 @@ public class Contrato extends BaseEntity {
     private BigDecimal descuento = BigDecimal.ZERO;
 
     @Enumerated(EnumType.STRING)
-    @Required
-    private EstadoContrato estado;
+    @DefaultValue("ACTIVO")
+    private EstadoContrato estado = EstadoContrato.ACTIVO;
 
     @Column(name = "motivo_cancelacion")
     @Stereotype("MEMORY")

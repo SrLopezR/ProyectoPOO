@@ -6,6 +6,7 @@ import org.example.Proyecto.model.enums.EstadoPago;
 import org.example.Proyecto.model.enums.MetodoPago;
 import org.openxava.annotations.*;
 import javax.persistence.*;
+import javax.ws.rs.DefaultValue;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -40,9 +41,9 @@ public class Pago extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    @Required
     @Hidden
-    private EstadoPago estado;
+    @DefaultValue("COMPLETADO")
+    private EstadoPago estado = EstadoPago.COMPLETADO;
 
     @Stereotype("MEMORY")
     private String observaciones;
