@@ -16,38 +16,6 @@ https://github.com/openxava/openxava/blob/master/openxavatest/src/main/resources
 <controllers>
 
     <!-- ═══════════════════════════════════════════ -->
-    <!-- CONTROLADOR PARA CONTRATOS -->
-    <!-- ═══════════════════════════════════════════ -->
-    <controller name="ContratoController">
-        <extends controller="Typical"/>
-
-        <!-- Acción personalizada para guardar con validaciones -->
-        <action name="save"
-                mode="detail"
-                by-default="if-possible"
-                class="org.example.Proyecto.actions.GuardarContratoAction"
-                icon="content-save"
-                keystroke="Control S">
-        </action>
-
-        <!-- Generar programación automática de servicios -->
-        <action name="generarProgramacion"
-                mode="detail"
-                class="org.example.Proyecto.actions.GenerarProgramacionAction"
-                icon="calendar-plus"
-                >
-        </action>
-
-        <!-- Renovar contrato automáticamente -->
-        <action name="renovarContrato"
-                mode="detail"
-                class="org.example.Proyecto.actions.RenovarContratoAction"
-                icon="autorenew"
-                >
-        </action>
-    </controller>
-
-    <!-- ═══════════════════════════════════════════ -->
     <!-- CONTROLADOR PARA PROGRAMACIÓN DE SERVICIOS -->
     <!-- ═══════════════════════════════════════════ -->
     <controller name="ProgramacionController">
@@ -92,13 +60,6 @@ https://github.com/openxava/openxava/blob/master/openxavatest/src/main/resources
                 >
         </action>
 
-        <!-- Realizar inventario físico -->
-        <action name="ajustarInventario"
-                mode="detail"
-                class="org.example.Proyecto.actions.AjustarInventarioAction"
-                icon="clipboard-check"
-                >
-        </action>
     </controller>
     
 </controllers>

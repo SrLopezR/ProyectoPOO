@@ -12,17 +12,6 @@
 		<controller name="Typical"/>
 	</default-module>
 
-    <!-- Módulo por defecto para entidades que no tienen módulo específico -->
-    <default-module>
-        <controller name="Typical"/>
-    </default-module>
-
-    <!-- Módulo para Contrato con controlador personalizado -->
-    <module name="Contrato">
-        <model name="Contrato"/>
-        <controller name="ContratoController"/>
-    </module>
-
     <!-- Módulo para Programación de Servicios -->
     <module name="ProgramacionServicios">
         <model name="ProgramacionServicios"/>
@@ -35,35 +24,5 @@
         <controller name="InventarioController"/>
     </module>
 
-    <!-- Módulo para Productos -->
-    <module name="Producto">
-        <model name="Producto"/>
-        <controller name="Typical"/>
-    </module>
-
-    <!-- Módulo para Servicios -->
-    <module name="Servicio">
-        <model name="Servicio"/>
-        <controller name="Typical"/>
-    </module>
-
-
-    <!-- Módulo para Clientes  -->
-    <module name="Cliente">
-        <model name="Cliente"/>
-        <controller name="Typical"/>
-    </module>
-
-    <!-- Módulo para Empleados  -->
-    <module name="Empleado">
-        <model name="Empleado"/>
-        <controller name="Typical"/>
-    </module>
-
-    <!-- Módulo para Ubicaciones  -->
-    <module name="Ubicacion">
-        <model name="Ubicacion"/>
-        <controller name="Typical"/>
-    </module>
 
 </application>

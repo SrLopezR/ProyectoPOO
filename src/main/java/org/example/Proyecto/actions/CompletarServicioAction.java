@@ -7,6 +7,8 @@ import org.example.Proyecto.model.enums.*;
 import javax.persistence.EntityManager;
 import java.time.LocalTime;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 public class CompletarServicioAction extends ViewBaseAction {
 
@@ -34,10 +36,12 @@ public class CompletarServicioAction extends ViewBaseAction {
         }
 
         // Actualizar servicio
+        LocalDate hoy = LocalDate.now();
+        DateTimeFormatter fc = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String fechaFormateada = hoy.format(fc);
         servicio.setEstado(EstadoProgramacionServicio.COMPLETADO);
         servicio.setHoraFin(LocalTime.now());
-        servicio.setObservaciones(servicio.getObservaciones() +
-                "\nCompletado el: " + LocalDate.now() + " a las " + LocalTime.now());
+        servicio.setObservaciones("\nCompletado el: " + fechaFormateada + " a las " + LocalTime.now().truncatedTo(ChronoUnit.MINUTES));
 
         // Actualizar inventario si se usaron productos
         actualizarInventario(servicio);

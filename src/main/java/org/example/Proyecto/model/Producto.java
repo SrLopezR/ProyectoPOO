@@ -6,6 +6,7 @@ import org.example.Proyecto.model.enums.CategoriaProducto;
 import org.example.Proyecto.model.enums.EstadoProducto;
 import org.openxava.annotations.*;
 import javax.persistence.*;
+import javax.ws.rs.DefaultValue;
 import java.math.BigDecimal;
 
 @Entity
@@ -18,7 +19,7 @@ public class Producto extends BaseEntity {
     @Required
     private String nombre;
 
-    @Column(length = 255)
+    @Column
     @Stereotype("MEMORY")
     private String descripcion;
 
@@ -38,11 +39,11 @@ public class Producto extends BaseEntity {
 
     @Column(name = "stock_minimo", nullable = false)
     @Required
-    private Integer stockMinimo = 0;
+    private Integer stockMinimo;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    @Required
+    @DefaultValue("ACTIVO")
     @Hidden
-    private EstadoProducto estado;
+    private EstadoProducto estado = EstadoProducto.ACTIVO;
 }
