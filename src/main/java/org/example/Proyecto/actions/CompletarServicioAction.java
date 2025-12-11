@@ -24,7 +24,6 @@ public class CompletarServicioAction extends ViewBaseAction {
             return;
         }
 
-        // Validar estado actual
         if (servicio.getEstado() == EstadoProgramacionServicio.COMPLETADO) {
             addError("El servicio ya está completado");
             return;
@@ -35,7 +34,6 @@ public class CompletarServicioAction extends ViewBaseAction {
             return;
         }
 
-        // Actualizar servicio
         LocalDate hoy = LocalDate.now();
         DateTimeFormatter fc = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String fechaFormateada = hoy.format(fc);
@@ -43,10 +41,8 @@ public class CompletarServicioAction extends ViewBaseAction {
         servicio.setHoraFin(LocalTime.now());
         servicio.setObservaciones("\nCompletado el: " + fechaFormateada + " a las " + LocalTime.now().truncatedTo(ChronoUnit.MINUTES));
 
-        // Actualizar inventario si se usaron productos
         actualizarInventario(servicio);
 
-        // Si es recurrente, programar el próximo
         if (Boolean.TRUE.equals(servicio.getEsRecurrente())) {
             programarProximoRecurrente(servicio);
         }
@@ -60,17 +56,15 @@ public class CompletarServicioAction extends ViewBaseAction {
             EntityManager em = XPersistence.getManager();
 
             for (UsoProductos uso : servicio.getProductosUtilizados()) {
-                // Crear registro de inventario
                 Inventario movimiento = new Inventario();
                 movimiento.setProducto(uso.getProducto());
-                movimiento.setCantidad(-uso.getCantidad()); // Salida negativa
+                movimiento.setCantidad(-uso.getCantidad());
                 movimiento.setFechaActualizacion(LocalDate.now());
                 movimiento.setTipoMovimiento(TipoMovimientoInventario.SALIDA_SERVICIO);
                 movimiento.setObservaciones("Uso en servicio ID: " + servicio.getId());
 
                 em.persist(movimiento);
 
-                // Actualizar stock del producto
                 Producto producto = uso.getProducto();
                 producto.setStock(producto.getStock() - uso.getCantidad());
             }
@@ -87,7 +81,6 @@ public class CompletarServicioAction extends ViewBaseAction {
             proximo.setEmpleado(servicio.getEmpleado());
             proximo.setUbicacion(servicio.getUbicacion());
 
-            // Calcular próxima fecha según periodicidad
             LocalDate proximaFecha = calcularProximaFecha(
                     servicio.getFechaServicio(),
                     servicio.getPeriodicidad()

@@ -61,9 +61,11 @@ public class ProgramacionServicios extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "periodicidad")
+    @Hidden
     private Periodicidad periodicidad;
 
     @Column(name = "fecha_fin_recurrencia")
+    @Hidden
     private LocalDate fechaFinRecurrencia;
 
     @OneToMany(mappedBy = "servicio")

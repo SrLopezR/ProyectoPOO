@@ -4,21 +4,15 @@
 
 <application name="Proyecto">
 
-	<!--
-	A default module for each entity is assumed with the
-	controllers on <default-module/>
-	-->
-	<default-module>
-		<controller name="Typical"/>
-	</default-module>
+    <default-module>
+        <controller name="Typical"/>
+    </default-module>
 
-    <!-- Módulo para Programación de Servicios -->
     <module name="ProgramacionServicios">
         <model name="ProgramacionServicios"/>
         <controller name="ProgramacionController"/>
     </module>
 
-    <!-- Módulo para Inventario -->
     <module name="Inventario">
         <model name="Inventario"/>
         <controller name="InventarioController"/>
