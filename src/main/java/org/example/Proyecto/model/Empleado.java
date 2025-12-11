@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.example.Proyecto.model.enums.*;
 import org.openxava.annotations.*;
-
 import javax.persistence.*;
 import javax.ws.rs.DefaultValue;
 import java.math.BigDecimal;

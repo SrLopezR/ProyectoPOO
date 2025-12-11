@@ -15,10 +15,6 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Table(name = "clientes")
-@Views({
-        @View(name = "simple", members = "nombre, apellido, telefonoPrincipal, correo"),
-        @View(name = "completo", members = "nombre, apellido, tipoCliente, telefonoPrincipal, telefonoSecundario, correo, fechaRegistro, fechaNacimiento, identificacionTributaria, estado, usuario")
-})
 public class Cliente extends BaseEntity {
 
     @Column(length = 100, nullable = false)
@@ -34,14 +30,14 @@ public class Cliente extends BaseEntity {
     @Required
     private TipoCliente tipoCliente;
 
-    @Column(name = "telefono_principal", length = 15, nullable = false, unique = true)
+    @Column(name = "telefono_principal", length = 15, nullable = false)
     @Required
     private String telefonoPrincipal;
 
     @Column(name = "telefono_secundario", length = 15)
     private String telefonoSecundario;
 
-    @Column(length = 100, nullable = false, unique = true)
+    @Column(length = 100, nullable = false)
     @Required
     private String correo;
 
@@ -53,11 +49,12 @@ public class Cliente extends BaseEntity {
     @Column(name = "fecha_nacimiento")
     private LocalDate fechaNacimiento;
 
-    @Column(name = "identificacion_tributaria", length = 20, unique = true)
+    @Column(name = "identificacion_tributaria", length = 20)
     private String identificacionTributaria;
 
     @Enumerated(EnumType.STRING)
-    @DefaultValue ("ACTIVO")
+    @DefaultValue("ACTIVO")
+    @Hidden
     private EstadoCliente estado = EstadoCliente.ACTIVO;
 
     @OneToOne(fetch = FetchType.LAZY)
@@ -65,19 +62,4 @@ public class Cliente extends BaseEntity {
     @DescriptionsList(descriptionProperties = "username")
     @Required
     private Usuario usuario;
-
-    @OneToMany(mappedBy = "cliente")
-    @ReadOnly
-    @ListProperties("alias, direccion, ciudad, esPrincipal")
-    private java.util.List<Ubicacion> ubicaciones;
-
-    @OneToMany(mappedBy = "cliente")
-    @ReadOnly
-    @ListProperties("numeroContrato, tipoContrato, estado, fechaInicio, fechaFin")
-    private java.util.List<Contrato> contratos;
-
-    //@OneToMany(mappedBy = "cliente")
-    //@ReadOnly
-    //@ListProperties("nombrePersonalizado, tipoPiscina, estado")
-    //private java.util.List<Piscinas> piscinas;
 }

@@ -56,6 +56,7 @@ public class Factura extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     @Required
+    @Hidden
     private EstadoFactura estado;
 
     @OneToMany(mappedBy = "factura")
