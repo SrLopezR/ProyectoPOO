@@ -47,7 +47,7 @@ public class Empleado extends BaseEntity {
     @Column(name = "correo_corporativo", length = 100, unique = true)
     @Pattern(regexp = ".+@PoolNic\\.com$",
             message = "El correo corporativo debe terminar en @PoolNic.com")
-    @ReadOnly // Hacemos este campo de solo lectura para que se genere automáticamente
+    @ReadOnly
     private String correoCorporativo;
 
     @Column(name = "fecha_contratacion", nullable = false)

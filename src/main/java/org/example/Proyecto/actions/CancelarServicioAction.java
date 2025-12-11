@@ -11,7 +11,7 @@ public class CancelarServicioAction extends ViewBaseAction {
         Object id = getView().getValue("id");
         System.out.println("ID del servicio: " + id);
 
-        addMessage("⚠Acción de cancelar servicio ejecutada");
+        addMessage("Acción de cancelar servicio ejecutada");
         addMessage("Esta es solo una prueba. ID del servicio: " + id);
 
         getView().refresh();
