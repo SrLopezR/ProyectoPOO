@@ -52,6 +52,7 @@ public class Contrato extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "dia_servicio")
+    @Hidden
     private DiaServicio diaServicio;
 
     @Column(name = "horario_preferido")

@@ -43,6 +43,7 @@ public class Servicio extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "frecuencia_recomendada")
+    @Hidden
     private FrecuenciaServicio frecuenciaRecomendada;
 
     @Column(name = "precio_base", precision = 10, scale = 2, nullable = false)

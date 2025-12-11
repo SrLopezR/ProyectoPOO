@@ -4,11 +4,13 @@ import lombok.Getter;
 import lombok.Setter;
 import org.example.Proyecto.model.enums.*;
 import org.openxava.annotations.*;
-
 import javax.persistence.*;
+import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.Pattern;
 import javax.ws.rs.DefaultValue;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.Period;
 
 @Entity
 @Getter
@@ -24,13 +26,10 @@ public class Empleado extends BaseEntity {
     @Required
     private String apellido;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "tipo_identificacion", nullable = false)
-    @Required
-    private TipoIdentificacion tipoIdentificacion;
-
     @Column(name = "numero_identificacion", length = 20, nullable = false, unique = true)
     @Required
+    @Pattern(regexp = "^\\d{3}-\\d{6}-\\d{4}[A-Z]$",
+            message = "Formato de cédula nicaragüense inválido. Use: 000-000000-0000A")
     private String numeroIdentificacion;
 
     @Enumerated(EnumType.STRING)
@@ -46,6 +45,9 @@ public class Empleado extends BaseEntity {
     private String telefonoContacto;
 
     @Column(name = "correo_corporativo", length = 100, unique = true)
+    @Pattern(regexp = ".+@PoolNic\\.com$",
+            message = "El correo corporativo debe terminar en @PoolNic.com")
+    @ReadOnly // Hacemos este campo de solo lectura para que se genere automáticamente
     private String correoCorporativo;
 
     @Column(name = "fecha_contratacion", nullable = false)
@@ -53,6 +55,7 @@ public class Empleado extends BaseEntity {
     private LocalDate fechaContratacion;
 
     @Column(name = "fecha_nacimiento")
+    @Required(message = "La fecha de nacimiento es obligatoria") // Hacerla obligatoria
     private LocalDate fechaNacimiento;
 
     @Column(name = "salario_base", precision = 10, scale = 2, nullable = false)
@@ -74,4 +77,37 @@ public class Empleado extends BaseEntity {
     @JoinColumn(name = "id_usuario", unique = true)
     @DescriptionsList(descriptionProperties = "username")
     private Usuario usuario;
+
+    // Método para generar el correo automáticamente
+    @PrePersist
+    @PreUpdate
+    public void generarCorreoCorporativo() {
+        if (nombre != null && apellido != null) {
+            // Tomar la primera letra del nombre y todo el apellido
+            String primeraLetra = nombre.substring(0, 1).toLowerCase();
+            String apellidoCompleto = apellido.toLowerCase();
+
+            // Eliminar espacios y caracteres especiales del apellido
+            apellidoCompleto = apellidoCompleto.replaceAll("[^a-zA-Z0-9]", "");
+
+            // Generar el correo
+            String correoGenerado = primeraLetra + apellidoCompleto + "@PoolNic.com";
+            this.correoCorporativo = correoGenerado;
+        }
+    }
+
+    // Validación personalizada para verificar que el empleado sea mayor de 18 años
+    @AssertTrue(message = "El empleado debe ser mayor de 18 años")
+    @Hidden
+    public boolean isMayorDeEdad() {
+        if (fechaNacimiento == null) {
+            return true; // Devolvemos true para no interferir con @Required
+        }
+
+        LocalDate hoy = LocalDate.now();
+        Period periodo = Period.between(fechaNacimiento, hoy);
+
+        // Verificar que tenga al menos 18 años
+        return periodo.getYears() >= 18;
+    }
 }
