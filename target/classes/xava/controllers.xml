@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE controllers SYSTEM "dtds/controllers.dtd">
+
+<controllers>
+    <controller name="ProgramacionController">
+        <extends controller="Typical"/>
+        <action name="completarServicio" mode="detail" class="org.example.Proyecto.actions.CompletarServicioAction" icon="check-circle"/>
+        <action name="cancelarServicio" mode="detail" class="org.example.Proyecto.actions.CancelarServicioAction" icon="cancel"/>
+        <action name="registrarProductos" mode="detail" class="org.example.Proyecto.actions.RegistrarProductosAction" icon="package-variant"/>
+    </controller>
+
+    <controller name="InventarioController">
+        <extends controller="Typical"/>
+        <action name="alertarStockBajo" mode="list" class="org.example.Proyecto.actions.AlertarStockBajoAction" icon="alert"/>
+    </controller>
+</controllers>
