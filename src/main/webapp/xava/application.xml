@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE application SYSTEM "dtds/application.dtd">
+
+<application name="Proyecto">
+
+    <module name="Cliente"/>
+    <module name="Empleado"/>
+    <module name="Usuario"/>
+    <module name="Contrato"/>
+    <module name="Servicio"/>
+    <module name="ProgramacionServicios"/>
+    <module name="Piscinas"/>
+    <module name="Ubicacion"/>
+    <module name="Producto"/>
+    <module name="Inventario"/>
+    <module name="Factura"/>
+    <module name="Pago"/>
+
+    <module name="Login">
+        <model name="Login"/>
+        <controller name="Login"/>
+        <tab name="LoginTab"/>
+    </module>
+
+    <theme name="OpenXava"/>
+
+</application>
