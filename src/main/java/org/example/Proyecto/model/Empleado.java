@@ -47,7 +47,7 @@ public class Empleado extends BaseEntity {
     @Column(name = "correo_corporativo", length = 100, unique = true)
     @Pattern(regexp = ".+@PoolNic\\.com$",
             message = "El correo corporativo debe terminar en @PoolNic.com")
-    @ReadOnly // Hacemos este campo de solo lectura para que se genere automáticamente
+    @ReadOnly
     private String correoCorporativo;
 
     @Column(name = "fecha_contratacion", nullable = false)
@@ -55,7 +55,7 @@ public class Empleado extends BaseEntity {
     private LocalDate fechaContratacion;
 
     @Column(name = "fecha_nacimiento")
-    @Required(message = "La fecha de nacimiento es obligatoria") // Hacerla obligatoria
+    @Required(message = "La fecha de nacimiento es obligatoria")
     private LocalDate fechaNacimiento;
 
     @Column(name = "salario_base", precision = 10, scale = 2, nullable = false)
@@ -78,36 +78,36 @@ public class Empleado extends BaseEntity {
     @DescriptionsList(descriptionProperties = "username")
     private Usuario usuario;
 
-    // Método para generar el correo automáticamente
+
     @PrePersist
     @PreUpdate
     public void generarCorreoCorporativo() {
         if (nombre != null && apellido != null) {
-            // Tomar la primera letra del nombre y todo el apellido
+
             String primeraLetra = nombre.substring(0, 1).toLowerCase();
             String apellidoCompleto = apellido.toLowerCase();
 
-            // Eliminar espacios y caracteres especiales del apellido
+
             apellidoCompleto = apellidoCompleto.replaceAll("[^a-zA-Z0-9]", "");
 
-            // Generar el correo
+
             String correoGenerado = primeraLetra + apellidoCompleto + "@PoolNic.com";
             this.correoCorporativo = correoGenerado;
         }
     }
 
-    // Validación personalizada para verificar que el empleado sea mayor de 18 años
+
     @AssertTrue(message = "El empleado debe ser mayor de 18 años")
     @Hidden
     public boolean isMayorDeEdad() {
         if (fechaNacimiento == null) {
-            return true; // Devolvemos true para no interferir con @Required
+            return true;
         }
 
         LocalDate hoy = LocalDate.now();
         Period periodo = Period.between(fechaNacimiento, hoy);
 
-        // Verificar que tenga al menos 18 años
+
         return periodo.getYears() >= 18;
     }
 }
