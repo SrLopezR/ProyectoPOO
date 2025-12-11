@@ -7,6 +7,7 @@ import org.example.Proyecto.model.enums.EstadoUsuario;
 import org.openxava.annotations.*;
 import javax.persistence.*;
 import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.Pattern;
 import javax.ws.rs.DefaultValue;
 
 @Entity
@@ -40,6 +41,8 @@ public class Usuario extends BaseEntity {
 
     @Column(length = 100, nullable = false)
     @Required
+    @Pattern(regexp = ".+@PoolNic\\.com$",
+            message = "El correo debe terminar en @PoolNic.com")
     private String email;
 
     @Column(name = "fecha_creacion", nullable = false)

@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.example.Proyecto.model.enums.*;
 import org.openxava.annotations.*;
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import javax.ws.rs.DefaultValue;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -23,13 +24,10 @@ public class Empleado extends BaseEntity {
     @Required
     private String apellido;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "tipo_identificacion", nullable = false)
-    @Required
-    private TipoIdentificacion tipoIdentificacion;
-
     @Column(name = "numero_identificacion", length = 20, nullable = false, unique = true)
     @Required
+    @Pattern(regexp = "^\\d{3}-\\d{6}-\\d{4}[A-Z]$",
+            message = "Formato de cédula nicaragüense inválido. Use: 000-000000-0000A")
     private String numeroIdentificacion;
 
     @Enumerated(EnumType.STRING)
@@ -45,6 +43,8 @@ public class Empleado extends BaseEntity {
     private String telefonoContacto;
 
     @Column(name = "correo_corporativo", length = 100, unique = true)
+    @Pattern(regexp = ".+@PoolNic\\.com$",
+            message = "El correo corporativo debe terminar en @PoolNic.com")
     private String correoCorporativo;
 
     @Column(name = "fecha_contratacion", nullable = false)

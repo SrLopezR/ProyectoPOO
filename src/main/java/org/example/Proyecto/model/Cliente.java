@@ -6,8 +6,8 @@ import org.example.Proyecto.model.enums.EstadoCliente;
 import org.example.Proyecto.model.enums.TipoCliente;
 import org.openxava.annotations.*;
 import org.openxava.calculators.CurrentLocalDateCalculator;
-
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import javax.ws.rs.DefaultValue;
 import java.time.LocalDate;
 
@@ -49,7 +49,9 @@ public class Cliente extends BaseEntity {
     @Column(name = "fecha_nacimiento")
     private LocalDate fechaNacimiento;
 
-    @Column(name = "identificacion_tributaria", length = 20)
+    @Column(name = "identificacion_tributaria", length = 20, unique = true)
+    @Pattern(regexp = "^\\d{3}-\\d{6}-\\d{4}[A-Z]$",
+            message = "Formato de cédula nicaragüense inválido. Use: 000-000000-0000A")
     private String identificacionTributaria;
 
     @Enumerated(EnumType.STRING)
@@ -62,4 +64,14 @@ public class Cliente extends BaseEntity {
     @DescriptionsList(descriptionProperties = "username")
     @Required
     private Usuario usuario;
+
+    @OneToMany(mappedBy = "cliente")
+    @ReadOnly
+    @ListProperties("alias, direccion, ciudad, esPrincipal")
+    private java.util.List<Ubicacion> ubicaciones;
+
+    @OneToMany(mappedBy = "cliente")
+    @ReadOnly
+    @ListProperties("numeroContrato, tipoContrato, estado, fechaInicio, fechaFin")
+    private java.util.List<Contrato> contratos;
 }
